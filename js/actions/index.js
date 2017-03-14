@@ -5,8 +5,6 @@ export const makeGuess = guess => ({
 	guess: " .... "
 })
 
-//Q: when should I use a switch case? CAn I use a switch case when writing reducers instead of if, else statements?
-
 // generate new random number
 export const RESET_GAME = 'RESET_GAME';
 export const resetGame = () => ({
