@@ -23,3 +23,8 @@ export class NewGame extends React.Component {
 	}
 }
 
+const mapStateToProps = (state, props) => ({
+    repositories: state.gameNumber     
+});
+
+export default connect(mapStateToProps)(Layout);
