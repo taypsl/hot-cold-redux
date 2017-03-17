@@ -1,9 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
 
-import AppContainer from './app-container';
 import * as actions from '../actions/index';
-
+import {connect} from 'react-redux';
+import AppContainer from './app-container';
 import NewGame from './new-game';
 
 export class Layout extends React.Component {
