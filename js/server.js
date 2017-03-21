@@ -24,4 +24,4 @@ app.post('/fewest-guesses', jsonParser, function(req, res) {
 	checkGuesses(state, ) // how ddo I get current guessArray from redux state?
 });
 
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 8080);  
