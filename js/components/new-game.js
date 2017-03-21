@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {connect} from 'react-redux';
 import * as actions from '../actions/index';
 
 export class NewGame extends React.Component {
@@ -10,21 +11,19 @@ export class NewGame extends React.Component {
 
 	resetGame() {
         this.props.dispatch(
-            actions.resetGame(this.props.gameNumber)
+            actions.resetGame()
         );
 	} // I'm confused about where I store the logic for this... it should generate new random number that is stored in state. 
 
 	render() {
-		<div className="new-game">
-			<button type="button" id="reset" onClick={this.resetGame}>
-				New Game
-			</button>
-		</div>
+		return (
+			<div className="new-game">
+				<button type="button" id="reset" onClick={this.resetGame}>
+					New Game
+				</button>
+			</div>
+		)
 	}
 }
 
-const mapStateToProps = (state, props) => ({
-    repositories: state.gameNumber     
-});
-
-export default connect(mapStateToProps)(Layout);
+export default connect()(NewGame);

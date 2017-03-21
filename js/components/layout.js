@@ -2,34 +2,32 @@ import React from 'react';
 
 import * as actions from '../actions/index';
 import {connect} from 'react-redux';
-import AppContainer from './app-container';
+import GuessForm from './guess-form';
 import NewGame from './new-game';
+import Feedback from './feedback';
+import GuessArray from './guess-array';
+
 
 export class Layout extends React.Component {
 	render() {
-		<div className="page-layout">
-			<NewGame />
-			<AppContainer />
-		</div>
+		return (
+			<div className="page-layout">
+				<NewGame />
+				<Feedback currentGuess={this.props.currentGuess[this.props.currentGuess.length - 1]} gameNumber={this.props.gameNumber}/>
+				<GuessForm />
+				<GuessArray guessArray={this.props.guessArray}/>
+			</div>
+		)
 	}
 }
 
-export default connect()(Layout)
+
+const mapStateToProps = (state, props) => ({
+    currentGuess: state.guessArray,
+    gameNumber: state.gameNumber, 
+    guessArray: state.guessArray    
+});
+
+export default connect(mapStateToProps)(Layout);
 
 
-/// hot cold app:
-// generate random number at new game, and save that number in the store (NewGame)
-// let people make guesses, 
-// save guesses to an array 
-// and compare their guess to the number in the store. 
-	// if its the same as the guess, return WINNER
-	// if its the same as a previous guess: return NOPE YOU DID THAT ALREADY
-	// if its within 10, return ON FIRE
-	// within 15 return HOT 
-	// within 20 return WARM
-	// within 25 ++ return ICE COLD
-
-// =======================================
-// when that's working==> 
-	// display guesses 
-	// display number of attemps 

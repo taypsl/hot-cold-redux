@@ -6,16 +6,13 @@ const initialRepositoryState= {
 }
 
 export const repositoryReducer = (state=initialRepositoryState, action) => {
-
   switch (action.type) {
 
-    case 'GUESS':
+    case actions.MAKE_GUESS:
     return {
       gameNumber: state.gameNumber,
-      guessArray: [...state.guessArray, action.guess];
+      guessArray: [...state.guessArray, action.guess]
     }
-    //assessGuess()
-    //returnFeedback();
     break;
 
     case actions.RESET_GAME:
@@ -33,6 +30,5 @@ export const repositoryReducer = (state=initialRepositoryState, action) => {
 };
 
 function generateNumber(){
-  gameNumber = Math.floor(Math.random()*100)+1;
-  return state.gameNumber
+  return Math.floor(Math.random()*100)+1;
 }

@@ -1,30 +1,34 @@
 import React from 'react';
 
 function Feedback(props) { 
-	function checkGuess(props) {
-		if (state.gameNumber == state.guess) {
-		return nextState.result = 'You Won!';
+	function checkGuess(gameNumber, currentGuess) {
+		if (!currentGuess) {
+			return 'Make your guess!'
 		}
-		else if ((state.guess < 0) || (state.guess >101)) {
+
+		else if (gameNumber == currentGuess) {
+			return 'You Won!';
+		}
+		else if ((gameNumber < 0) || (currentGuess >101)) {
 			alert("Only guess a number between 0 and 100")
 			return true;
 		}
-		else if (Math.abs(state.gameNumber - state.guess) < 10) {
-			return nextState.result = 'Hot';
+		else if (Math.abs(gameNumber - currentGuess) < 10) {
+			return 'Hot';
 		}
-		else if (Math.abs(state.gameNumber - state.guess) < 20) {
-			return nextState.result = 'Kinda Hot';
+		else if (Math.abs(gameNumber - currentGuess) < 20) {
+			return 'Kinda Hot';
 		}
-		else if (Math.abs(state.gameNumber - state.guess) < 30) {
-			return nextState.result = 'Luke Warm';
+		else if (Math.abs(gameNumber - currentGuess) < 30) {
+			return 'Luke Warm';
 		}
 		else {
-			return nextState.result = 'Cold as Ice';
+			return 'Cold as Ice';
 		}
 	}
     return (
         <span className="feedback">
-            {nextState.result}
+            { checkGuess(props.gameNumber, props.currentGuess) } 
         </span>
     );
 }
