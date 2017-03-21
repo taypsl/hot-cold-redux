@@ -1,4 +1,6 @@
 import React from 'react';
+import * as actions from '../actions/index';
+import {connect} from 'react-redux';
 
 function Feedback(props) { 
 	function checkGuess(gameNumber, currentGuess) {
@@ -7,6 +9,9 @@ function Feedback(props) {
 		}
 
 		else if (gameNumber == currentGuess) {
+		     props.dispatch(
+            	actions.sendGuesses(props.guessArray.length)
+        	);
 			return 'You Won!';
 		}
 		else if ((gameNumber < 0) || (currentGuess >101)) {
@@ -27,9 +32,14 @@ function Feedback(props) {
 		}
 	}
     return (
-        <span className="feedback">
-            { checkGuess(props.gameNumber, props.currentGuess) } 
-        </span>
+        <div>
+        	<div className="feedback">
+	            { checkGuess(props.gameNumber, props.guessArray[props.guessArray.length - 1]) } 
+	        </div>
+	        <div>
+	        	{ props.fewestGuesses }
+	        </div>
+	    </div>
     );
 }
 
@@ -37,7 +47,8 @@ Feedback.defaultProps = {
     result: 'Make your guess!'
 };
 
-export default Feedback;
+
+export default connect()(Feedback);
 
 
 // function Feedback(props) {

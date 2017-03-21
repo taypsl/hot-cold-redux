@@ -9,11 +9,23 @@ import GuessArray from './guess-array';
 
 
 export class Layout extends React.Component {
+
+	   componentDidMount() {
+        this.props.dispatch(
+            actions.fetchGuesses()
+        );
+    }
+
+
 	render() {
 		return (
 			<div className="page-layout">
 				<NewGame />
-				<Feedback currentGuess={this.props.currentGuess[this.props.currentGuess.length - 1]} gameNumber={this.props.gameNumber}/>
+				<Feedback 
+					guessArray={this.props.guessArray} 
+					gameNumber={this.props.gameNumber} 
+					fewestGuesses={this.props.fewestGuesses} 
+				/>
 				<GuessForm />
 				<GuessArray guessArray={this.props.guessArray}/>
 			</div>
@@ -23,9 +35,9 @@ export class Layout extends React.Component {
 
 
 const mapStateToProps = (state, props) => ({
-    currentGuess: state.guessArray,
     gameNumber: state.gameNumber, 
-    guessArray: state.guessArray    
+    guessArray: state.guessArray,
+    fewestGuesses: state.fewestGuesses    
 });
 
 export default connect(mapStateToProps)(Layout);
